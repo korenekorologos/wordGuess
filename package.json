@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/korenekorologos/wordGuess/issues"
   },
-  "homepage": "https://github.com/korenekorologos/wordGuess#readme"
+  "homepage": "https://github.com/korenekorologos/wordGuess#readme",
+  "dependencies": {
+    "inquirer": "^7.0.3"
+  }
 }
