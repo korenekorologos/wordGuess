@@ -79,9 +79,56 @@ function theLogic() {
             }
         ])
             .then(function (input) {
+                if (
+                    !letterArray.includes(input.userinput) ||
+                    input.userinput.length > 1
+                ) {
+                    console.log("Nice try, try again!\n");
+                    theLogic();
+                } else {
+                    if (
+                        incorrectletters.includes(input.userinput) ||
+                        correctletters.includes(input.userinput) ||
+                        input.userinput === ""
+                    ) {
+                        console.log("\nYou already guessed it or nothings been entered yet\n");
+                        theLogic();
+                    } else {
+                        var wordCheckArray = [];
+                        computerWord.userGuess(input.userinput);
+
+                        computerWord.objArray.forEach(wordCheck);
+                        if (wordCheckArray.join("") === wordComplete.join("")) {
+                            console.log("\nOooops, that's incorrect\n");
+
+                            incorrectletters.push(input.userinput);
+                            guessesleft--;
+                        } else {
+                            console.log("\nAwesome, that's correct!\n"); 
+                            correctletters.push(input.userinput); 
+                        }
+
+                        computerWord.log();
+
+                        //shows the guesses left 
+                        console.log("Guess Left: " + guessesleft + "\n"); 
+
+                        //shows the letters that've been guessed already 
+                        console.log("Letters Guessed: " + incorrectletters.join (" ") + "\n"); 
+                    
+                    
+                    }
+
+
+                }
+
+
+
 
             })
 
+    } else {
+        console.log("WINNER!!");
     }
 
 }
