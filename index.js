@@ -104,33 +104,61 @@ function theLogic() {
                             incorrectletters.push(input.userinput);
                             guessesleft--;
                         } else {
-                            console.log("\nAwesome, that's correct!\n"); 
-                            correctletters.push(input.userinput); 
+                            console.log("\nAwesome, that's correct!\n");
+                            correctletters.push(input.userinput);
                         }
 
                         computerWord.log();
 
                         //shows the guesses left 
-                        console.log("Guess Left: " + guessesleft + "\n"); 
+                        console.log("Guess Left: " + guessesleft + "\n");
 
                         //shows the letters that've been guessed already 
-                        console.log("Letters Guessed: " + incorrectletters.join (" ") + "\n"); 
-                    
-                    
+                        console.log("Letters Guessed: " + incorrectletters.join(" ") + "\n");
+
+                        //guess that are left 
+                        if (guessesleft > 0) {
+                            theLogic();
+                        } else {
+                            console.log("Sorry, but you lose\n");
+                            restartGame();
+                        }
+                        function wordCheck(key) {
+                            wordCheckArray.push(key.guessed);
+                        }
                     }
-
-
                 }
-
-
-
-
-            })
+            }); 
 
     } else {
-        console.log("WINNER!!");
+        console.log("WINNER!!\n");
+        restartGame(); 
     }
-
+    function completeCheck(key) {
+        wordComplete.push(key.guessed); 
+    }
 }
 
-
+function restartGame() {
+    inquirer
+    .prompt([
+        {
+            type: "list",
+            message:"Would you like to:", 
+            choices: ["Play Again", "Exit"],
+            name: 'restart'
+        }
+    ])
+    .then(function(input) {
+        if (input.restart === "Let's play again!") {
+            requireNewWord = true; 
+            incorrectletters = [];
+            correctletters = []; 
+            guessesleft = 10; 
+            theLogic(); 
+        } else {
+            return;
+        }
+    })
+}
+theLogic(); 

@@ -1,24 +1,24 @@
-function letter(value) {  //begin with "letter" function 
-    this.letter = value;
+function Letter(value) {  //begin with "letter" function 
+    this.Letter = value;
     this.guessed = false;
 
-    this.toSTring = function () { //string to determine the space & blanks
-        if (this.letter === " ") {
+    this.toString = function () { //string to determine the space & blanks
+        if (this.Letter === " ") {
             this.guessed = true; //determine guessed t/f
             return " ";
         } else {
             if (this.guessed === false) { //determines blank, underlined 
                 return "_";
             } else {
-                return this.letter;
+                return this.Letter;
             }
         }
     };
     this.guess = function (guess) {
-        if (guess === this.letter) {
+        if (guess === this.Letter) {
             this.guess = true;
         }
     };
 }
-module.exports = letter; //export the file 
+module.exports = Letter; //export the file 
 
